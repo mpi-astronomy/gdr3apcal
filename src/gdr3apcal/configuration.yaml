@@ -1,0 +1,36 @@
+models:
+  repository:
+    url: 'https://keeper.mpdl.mpg.de/d/ea60e03205e54090bb1c'
+    type: keeper
+mh:
+  callable: true
+  features:
+  - teff_gspphot
+  - logg_gspphot
+  - mh_gspphot
+  - azero_gspphot
+  - ebpminrp_gspphot
+  - ag_gspphot
+  - mg_gspphot
+  - cosb
+  - libname_gspphot
+  filename: mars_mh.py
+  groupby: libname_gspphot
+  label: mh_gspphot
+  md5sum: '5b57ca6596bfe2b1ce3363fe7b3524d5'
+  version: '0.7'
+teff:
+  features:
+  - teff_gspphot
+  - logg_gspphot
+  - mh_gspphot
+  - azero_gspphot
+  - ebpminrp_gspphot
+  - ag_gspphot
+  - mg_gspphot
+  - cosb
+  callable: false
+  filename: GSPPhot-Teff-calibration-extratrees-2021-Oct-07.joblib.gz
+  label: teff_gspphot
+  md5sum: 'c92ccbe47bdf1fd2bf4e1823aafc134e'
+  version: '0.3'
