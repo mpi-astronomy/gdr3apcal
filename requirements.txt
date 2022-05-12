@@ -1,0 +1,9 @@
+pandas
+scikit-learn
+numpy
+joblib
+astropy
+dill
+git+https://github.com/scikit-learn-contrib/py-earth@v0.2dev
+pyyaml
+requests
