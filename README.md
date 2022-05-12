@@ -58,18 +58,11 @@ voluminous calibration models in the future.)
 
 ## How to install 
 
-You can install this package directly from SVN using `pip`
+You can install this package directly from git using `pip`
 
 ```
-pip install svn+https://gaia.esac.esa.int/dpacsvn/DPAC/CU8/MPIA/software/gdr3calib
+pip install git+https://github.com/mpi-astronomy/gdr3apcal
 ```
-
-As it is currently on the DPAC SVN, if you may need to provide a username
-
-```
-pip install svn+https://<username>@gaia.esac.esa.int/dpacsvn/DPAC/CU8/MPIA/software/gdr3calib
-```
-(if needed you will be prompted to enter your password)
 
 ## Authors/Contributors
 * Rene Andrae
