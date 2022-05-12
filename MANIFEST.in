@@ -1,1 +1,2 @@
-include README.rst LICENSE models\*
+include README.rst LICENSE
+recursive-include src/gdr3apcal/models/ *.*
