@@ -33,14 +33,14 @@ calibration are:
 ## Quick start
 
 ```python 
-import gdr3calib
+import gdr3apcal
 import numpy
 import pandas
 
 # some pandas data frame with your data from GACS using GACS column names
 df = pandas.read_csv("result-1.csv")  
 # Instantiate calibration object
-calib = gdr3calib.GaiaDR3_GSPPhot_cal()
+calib = gdr3apcal.GaiaDR3_GSPPhot_cal()
 # Apply calibrations to [M/H] and/or Teff, returning a numpy array of calibrated values.
 metal_calib = calib.calibrateMetallicity(df)
 teff_calib = calib.calibrateTeff(df)
