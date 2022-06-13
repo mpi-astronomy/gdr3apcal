@@ -21,12 +21,12 @@ def _read_configuration(fname: str = None) -> dict:
 
 
 def check_md5_of_file(file_name: str, original_md5: str = None) -> bool:
-    """ Verify the MD5 Checksum of a given file against reference 
+    """ Verify the MD5 Checksum of a given file against reference
     Running without reference will return False, but print the computed hash sum
     """
     with open(file_name, 'rb') as file_to_check:
         # read contents of the file
-        data = file_to_check.read()    
+        data = file_to_check.read()
         # pipe contents of the file through
         md5_returned = hashlib.md5(data).hexdigest()
 
@@ -54,12 +54,12 @@ def _check_model_files(name:str , modelfile:str , modelmd5sum: str):
         repo.download_file(modelfile.split('/')[-1], modelsdir)
     except Exception as e:
         raise e
-        
+
 
 def _load_model_from_configuration(name:str , config: dict) -> CalibrationModel:
-    """ Load a model form the configuration file 
+    """ Load a model form the configuration file
     Decides which type of model to use given the model description
-    """    
+    """
     model_config = config[name]
 
     def model_type(model_config: dict) -> object:
@@ -75,11 +75,11 @@ def _load_model_from_configuration(name:str , config: dict) -> CalibrationModel:
         modelfile = model_config['filename']
     else:
         modelfile = os.path.join(modelsdir, model_config['filename'])
-    
+
     try:
         if model_config.get('callable', False):
             import importlib
-            modulename = "gdr3calib.models.{0:s}".format(model_config['filename'].replace('.py', ''))
+            modulename = "gdr3apcal.models.{0:s}".format(model_config['filename'].replace('.py', ''))
             model = importlib.import_module(modulename).models
         else:
             model = joblib.load(modelfile)
@@ -95,7 +95,7 @@ def _load_model_from_configuration(name:str , config: dict) -> CalibrationModel:
     label = model_config['label']
     groupby = model_config.get('groupby', False)
     mclass = model_type(model_config)
-    
+
     if not groupby:
         model = mclass(name, fn, features, label)
         calib = CalibrationModel(name, model, features, label, groupby)
@@ -134,7 +134,7 @@ class GaiaDR3_GSPPhot_cal:
     def __repr__(self) -> str:
         """ How it shows on the command line """
         return "Calibration Models\n    {0}".format('\n    '.join([str(m) for m in self._models]))
-    
+
     def printModelVersions(self):
         print('[M/H] calibration model version: ', self._configuration['mh']['version'])
         print('Teff calibration model version: ', self._configuration['teff']['version'])
