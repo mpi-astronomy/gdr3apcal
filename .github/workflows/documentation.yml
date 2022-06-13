@@ -21,23 +21,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
       with:
-        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
-        fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
-    # - name: Setup tmate session   # Debugging
-    #   uses: mxschmitt/action-tmate@v3
-    - uses: ammaraskar/sphinx-action@master
+        persist-credentials: false
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
       with:
-        pre-build-command: |
-            python -m pip install -r requirements.txt
-            python -m pip install -r docs/requirements.txt
-            python -m pip show markupsafe
-            # clear previous API documentation
-            rm -f arxiv_on_deck_2.rst arxiv_on_deck_2.*.rst
-            # re-generate API documentation
-            make apidoc
-        docs-folder: "docs/"
+        python-version: "3.9"
+
+
+    - name: Install docs dependencies
+      run: |
+        pip install --upgrade pip
+        pip install ".[docs]"
+
+    - name: Build docs
+      working-directory: ./docs
+      run: |
+        make html
+
     # Publish built docs to gh-pages branch.
     # ===============================
     - name: Commit documentation changes
