@@ -9,10 +9,10 @@ does not work in python. Python will look for the original module of
 the function. (regardless of using `joblib`, or `dill`) We did not find
 a way to deep dump the functions.
 """
-import sys
-from typing import Sequence, Tuple, Union
-from joblib import load
 import hashlib
+from typing import Sequence, Tuple
+from joblib import load
+
 try:
     from pyearth import export, Earth
 
@@ -100,5 +100,5 @@ try:
                 model_names.append(model_name)
         return dump_pyearth_models(models, model_names, output)
 
-except:
+except ImportError:
     print('pyearth not installed')
