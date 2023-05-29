@@ -1,2 +1,3 @@
 include README.rst LICENSE
 recursive-include src/gdr3apcal/models/ *.*
+include src/gdr3apcal/configuration.yaml
