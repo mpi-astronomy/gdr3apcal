@@ -83,7 +83,7 @@ def _load_model_from_configuration(name:str , config: dict) -> CalibrationModel:
             model = importlib.import_module(modulename).models
         else:
             model = joblib.load(modelfile)
-    except FileNotFoundError as err:
+    except FileNotFoundError:
         raise FileNotFoundError(
             f"Could not find the source of model {name:s}\n Expected: {modelfile:s}"
         )
@@ -97,8 +97,8 @@ def _load_model_from_configuration(name:str , config: dict) -> CalibrationModel:
     mclass = model_type(model_config)
 
     if not groupby:
-        model = mclass(name, fn, features, label)
-        calib = CalibrationModel(name, model, features, label, groupby)
+        model = {name: mclass(name, fn, features, label) for name, fn in model.items()}
+        calib = CalibrationModel(name, model, features, label)
     else:   # Multi library
         model = {name: mclass(name, fn, features, label) for name, fn in model.items()}
         calib = CalibrationModelGrouped(name, model, features, label, groupby)
@@ -136,5 +136,6 @@ class GaiaDR3_GSPPhot_cal:
         return "Calibration Models\n    {0}".format('\n    '.join([str(m) for m in self._models]))
 
     def printModelVersions(self):
+        """Prints model versions"""
         print('[M/H] calibration model version: ', self._configuration['mh']['version'])
         print('Teff calibration model version: ', self._configuration['teff']['version'])
