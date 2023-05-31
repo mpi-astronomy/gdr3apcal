@@ -10,7 +10,7 @@ __PACKAGE_DIR__ = '/'.join(os.path.abspath(inspect.getfile(inspect.currentframe(
 
 try:
   from importlib import resources
-  modelsdir = importlib.resources.files('gdr3apcal') / 'models'
+  modelsdir = resources.files('gdr3apcal') / 'models'
 except (ImportError, AttributeError):  # older importlib version
   from pkg_resources import resource_filename
   modelsdir = resource_filename('gdr3apcal', 'models')
