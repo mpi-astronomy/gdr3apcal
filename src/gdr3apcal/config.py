@@ -8,7 +8,7 @@ __VERSION__ = "0.4"
 #directories
 __PACKAGE_DIR__ = '/'.join(os.path.abspath(inspect.getfile(inspect.currentframe())).split('/')[:-1])
 
-try
+try:
   from importlib import resources
   modelsdir = importlib.resources.files('gdr3apcal') / 'models'
 except (ImportError, AttributeError):  # older importlib version
