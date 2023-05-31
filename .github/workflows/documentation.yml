@@ -41,6 +41,11 @@ jobs:
     - name: Build docs
       working-directory: ./docs
       run: |
+        # clear previous API documentation
+        rm -f gdr3apcal.rst gdr3apcal.*.rst
+        # re-generate API documentation
+        make apidoc
+        # make html output
         make html
 
     # Publish built docs to gh-pages branch.
