@@ -110,8 +110,6 @@ class GaiaDR3_GSPPhot_cal:
     """ Collection of calibration models for different GSP-Phot parameters. """
     def __init__(self, configuration_file: str = None):
         """ constructor """
-        if configuration_file is None:
-            configuration_file = __PACKAGE_DIR__ + "/configuration.yaml"
         self._configuration = _read_configuration(configuration_file)
 
         # Private models are only loaded when first called.
