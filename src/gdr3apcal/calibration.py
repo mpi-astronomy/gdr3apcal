@@ -24,11 +24,15 @@ def check_md5_of_file(file_name: str, original_md5: str = None) -> bool:
     """ Verify the MD5 Checksum of a given file against reference
     Running without reference will return False, but print the computed hash sum
     """
+    hashinst = hashlib.md5()
     with open(file_name, 'rb') as file_to_check:
         # read contents of the file
-        data = file_to_check.read()
+        ## data = file_to_check.read()
         # pipe contents of the file through
-        md5_returned = hashlib.md5(data).hexdigest()
+        ## md5_returned = hashlib.md5(data).hexdigest()
+        for chunk in iter(lambda: file_to_check.read(hashinst.block_size * 128), b''):
+            hashinst.update(chunk)
+    md5_returned = hashinst.hexdigest()
 
     if original_md5 is None:
         print(f"{file_name:s}: {md5_returned:s}")
