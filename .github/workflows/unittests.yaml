@@ -24,5 +24,6 @@ jobs:
         pip install ".[test]"
     - name: Run tests and coverage report
       run: |       
+        pytest
         coverage run --data-file test/.coverage -m pytest -s
         coverage report --data-file test/.coverage      
