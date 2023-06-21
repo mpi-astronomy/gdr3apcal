@@ -24,7 +24,7 @@ def check_md5_of_file(file_name: str, original_md5: str = None) -> bool:
     """ Verify the MD5 Checksum of a given file against reference
     Running without reference will return False, but print the computed hash sum
     """
-    with open(file_name, 'rb') as file_to_check:
+    with open(file_name, 'rb', encoding='utf8') as file_to_check:
         # read contents of the file
         data = file_to_check.read()
         # pipe contents of the file through
