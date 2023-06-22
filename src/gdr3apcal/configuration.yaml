@@ -17,5 +17,5 @@ mh:
   filename: mars_mh.py
   groupby: libname_gspphot
   label: mh_gspphot
-  md5sum: '5b57ca6596bfe2b1ce3363fe7b3524d5'
+  md5sum: 'bd102a2b38e161e6c770650e021d2d8696542e2bddd411d0a590fe28f24030fa'
   version: '0.7'
