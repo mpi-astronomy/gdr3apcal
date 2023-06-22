@@ -1,3 +1,3 @@
 from .calibration import (CalibrationModel, GaiaDR3_GSPPhot_cal)
 
-__VERSION__ = "1.6"
+__VERSION__ = "1.6.1"
